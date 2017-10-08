@@ -30,28 +30,28 @@
          });
         </script>
     </head>
-    <body style="background-color: black"><BR><BR><BR>    
+    <body style="background-color: darkslategray"><BR><BR><BR>    
         <form name="form_principal" action="../servlet" method="post">
             
-            <h1>Realizar búsqueda en Wikipedia</h1><BR><BR><BR>
-            <h4>Que desea buscar?</h4><BR><BR>
+            <h1 style="color: black">Realizar búsqueda en Wikipedia</h1><BR><BR><BR>
+            <h4 style="color: black">Que desea buscar?</h4><BR><BR>
             
-            <label>Hecho histórico =</label>
+            <label style="color: black">Hecho histórico =</label>
             <input type="text" name="historia" placeholder="Ej: Segunda Guerra Mundial" size="32"/><BR><BR>
             
-            <label>Lugar =</label>
+            <label style="color: black">Lugar =</label>
             <input type="text" name="lugar" placeholder="Ej: Stalingrado" size="41"/><BR><BR>
             
-            <label>Personaje =</label>
+            <label style="color: black">Personaje =</label>
             <input type="text" name="personaje" placeholder="Ej: Friedrich Paulus" size="37"/><BR><BR>
             
             
-            <label> Fecha Inicial = </label>
+            <label style="color: black"> Fecha Inicial = </label>
             <input type="text" name="datepickerinicial" id="datepickerinicial" readonly="readonly" size="12" />
 
 
 
-            <label> Fecha Final = </label>
+            <label style="color: black"> Fecha Final = </label>
             <input type="text" name="datepickerfinal" id="datepickerfinal" readonly="readonly" size="12" /><BR><BR><BR>
             
             

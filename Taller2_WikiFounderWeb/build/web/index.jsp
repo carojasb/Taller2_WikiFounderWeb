@@ -12,11 +12,11 @@
         <link href="Resources/css/screen.css" rel="stylesheet" type="text/css"/>
         <title>Inicio WikiFouber</title>
     </head>
-    <body style="background-color: black"><BR><BR><BR>
+    <body style="background-color: darkslategray"><BR><BR><BR>
         <form name="form_index" action="Taller2/../jsp/principal.jsp">                        
-            <h1 align="center">Grupo 05</h1><BR><BR>
-            <h2 align="center">Camilo Andres Rojas Bulla</h2>
-            <h2 align="center">Pablo Andres Boada</h2><BR><BR>
+            <h1 style="color: black" align="center">Grupo 05</h1><BR><BR>
+            <h2 style="color: black" align="center">Camilo Andres Rojas Bulla</h2>
+            <h2 style="color: black" align="center">Pablo Andres Boada</h2><BR><BR>
             <p class="BtnIniciar" align="center">
                 <input type="submit" value="Iniciar" name="btn_iniciar" align="center"/>
             </p>
