@@ -55,7 +55,8 @@ public class Servlet extends HttpServlet {
             num2 = Integer.parseInt(request.getParameter("lugar"));
             
             //String result = sshConector.executeCommand("hadoop jar prueba_taller2.jar " + num1 + " " + num2);
-            String result = sshConector.executeCommand("hadoop jar Wiki.jar uniandes.reuters.job.XML_Job datos_wiki_test salidakmi3");
+            String borrar = sshConector.executeCommand("hadoop fs -rm -r -f salida_taller2");
+            String result = sshConector.executeCommand("hadoop jar Wiki.jar uniandes.reuters.job.XML_Job datos_wiki_test salida_taller2");
                         
             PrintWriter out = response.getWriter();
             
