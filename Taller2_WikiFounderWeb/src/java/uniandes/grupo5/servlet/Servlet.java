@@ -42,9 +42,6 @@ public class Servlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
            
-        hecho = request.getParameter("historia");
-        hecho = request.getParameter("lugar");
-        
         try{
             SSHConector sshConector = new SSHConector();             
              
