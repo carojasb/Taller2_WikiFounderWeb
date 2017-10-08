@@ -33,31 +33,39 @@
     <body style="background-color: darkslategray"><BR><BR><BR>    
         <form name="form_principal" action="../servlet" method="post">
             
-            <h1 style="color: black">Realizar búsqueda en Wikipedia</h1><BR><BR><BR>
-            <h4 style="color: black">Que desea buscar?</h4><BR><BR>
+            <h1 style="color: black" align="center">Realizar búsqueda en Wikipedia</h1><BR><BR><BR>
+            <a align="center">
             
-            <label style="color: black">Hecho histórico =</label>
-            <input type="text" name="historia" placeholder="Ej: Segunda Guerra Mundial" size="32"/><BR><BR>
-            
-            <label style="color: black">Lugar =</label>
-            <input type="text" name="lugar" placeholder="Ej: Stalingrado" size="41"/><BR><BR>
-            
-            <label style="color: black">Personaje =</label>
-            <input type="text" name="personaje" placeholder="Ej: Friedrich Paulus" size="37"/><BR><BR>
-            
-            
-            <label style="color: black"> Fecha Inicial = </label>
-            <input type="text" name="datepickerinicial" id="datepickerinicial" readonly="readonly" size="12" />
+                <h2 style="color: black">Que desea buscar?</h2><BR><BR>
+                
+                <p align="center">
+                <label style="color: black">Hecho histórico =</label>
+                <input type="text" name="historia" placeholder="Ej: Segunda Guerra Mundial" size="32"/><BR><BR>
+                
+                <label style="color: black">Lugar =</label>
+                <input type="text" name="lugar" placeholder="Ej: Stalingrado" size="41"/><BR><BR>
+
+                <label style="color: black">Personaje =</label>
+                <input type="text" name="personaje" placeholder="Ej: Friedrich Paulus" size="37"/><BR><BR>
 
 
+                <label style="color: black"> Fecha Inicial = </label>
+                <input type="text" name="datepickerinicial" id="datepickerinicial" readonly="readonly" size="12" />
 
-            <label style="color: black"> Fecha Final = </label>
-            <input type="text" name="datepickerfinal" id="datepickerfinal" readonly="readonly" size="12" /><BR><BR><BR>
+
+                <label style="color: black"> Fecha Final = </label>
+                <input type="text" name="datepickerfinal" id="datepickerfinal" readonly="readonly" size="12" /><BR><BR><BR>
+                </p>
+
+                <p class="BtnIniciar">
+                    <input type="submit" value="Buscar" name="btn_buscar"/>
+                </p>
             
+            </a>
+            <BR><BR>
+            <p class="linkVolver" align="center">                
+            <a href="../index.jsp" style="font-size: 15pt; font-family: Comic Sans MS; color: white; align-items: center">Inicio</a>
             
-            <p class="BtnIniciar">
-                <input type="submit" value="Buscar" name="btn_buscar"/>
-            </p>
             
             <%
             String hist;

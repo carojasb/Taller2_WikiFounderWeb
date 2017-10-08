@@ -109,11 +109,11 @@ public class Servlet extends HttpServlet {
                             "</style>");
                 out.println("<body style=\"background-color: darkslategray\"> <BR><BR><BR>");                    
                     out.println("<h1 style=\"color: black\" align=\"center\">PARAMETROS DE LA BÚSQUEDA</h1><BR><BR>");
-                    out.println("<h2 style=\"color: black\">Hecho historico = " + hecho  + "</h2>");
-                    out.println("<h2 style=\"color: black\">Lugar = " + lugar  + "</h2>");
-                    out.println("<h2 style=\"color: black\">Personaje = " + perso  + "</h2>");
-                    out.println("<h2 style=\"color: black\">Fecha inicial = " + fecha_inicial  + "</h2>");
-                    out.println("<h2 style=\"color: black\">Fecha final = " + fecha_final  + "</h2><BR><BR>");
+                    out.println("<h2 style=\"color: black\" align=\"center\"> <b>Hecho historico = </b>" + hecho.replace("_", " ")  + "</h2>");
+                    out.println("<h2 style=\"color: black\" align=\"center\"> <b>Lugar = </b>" + lugar.replace("_", " ")  + "</h2>");
+                    out.println("<h2 style=\"color: black\" align=\"center\"> <b>Personaje = </b>" + perso.replace("_", " ")  + "</h2>");
+                    out.println("<h2 style=\"color: black\" align=\"center\"> <b>Fecha inicial = </b>" + fecha_inicial.replace("_", " ")  + "</h2>");
+                    out.println("<h2 style=\"color: black\" align=\"center\"> <b>Fecha final = </b>" + fecha_final.replace("_", " ")  + "</h2><BR><BR>");                    
                     out.println("<h2 style=\"color: black\">El resultado del jar es..." + result + "</h2>");
                     out.println("<script src=\"//d3js.org/d3.v3.min.js\"></script>\n" +
                 "<script>\n" +
@@ -259,6 +259,11 @@ public class Servlet extends HttpServlet {
                 "}\n" +
                 "\n" +
                 "</script>");
+                out.println("<p class=\"linkVolver\" align=\"center\">\n" +
+                "<a href=\"index.jsp\" style=\"font-size: 15pt; font-family: Comic Sans MS; color: white; align-items: center\">Inicio</a>\n" +
+                "<br><br>\n" +
+                "<a href=\"jsp/principal.jsp\" style=\"font-size: 15pt; font-family: Comic Sans MS; color: white; align-items: center\">Volver</a>\n" +
+                "</p>");
                 out.println("</body>");
             out.println("</html>");
             out.close();
