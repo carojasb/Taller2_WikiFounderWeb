@@ -54,8 +54,9 @@ public class Servlet extends HttpServlet {
             num1 = Integer.parseInt(request.getParameter("historia"));
             num2 = Integer.parseInt(request.getParameter("lugar"));
             
-            String result = sshConector.executeCommand("hadoop jar prueba_taller2.jar " + num1 + " " + num2);
-            
+            //String result = sshConector.executeCommand("hadoop jar prueba_taller2.jar " + num1 + " " + num2);
+            String result = sshConector.executeCommand("hadoop jar Wiki.jar uniandes.reuters.job.XML_Job datos_wiki_test salidakmi3");
+                        
             PrintWriter out = response.getWriter();
             
             out.println("<html>");
@@ -63,9 +64,9 @@ public class Servlet extends HttpServlet {
                     out.println("<title>Respuesta Servlet</title>");
                     out.println("<link href=\"Resources/css/screen.css\" rel=\"stylesheet\" type=\"text/css\"/>");
                 out.println("</head>");
-                out.println("<body style=\"background-color: black\"> <BR><BR><BR>");                    
+                out.println("<body style=\"background-color: black\"> <BR><BR><BR>");
                     out.println("<h1>PARAMETROS DE LA BÚSQUEDA</h1><BR><BR>");
-                    out.println("<h2>La suma entre " + num1 + " y " + num2 + " es = " + result + "</h2><BR>");                                      
+                    out.println("<h2>La suma entre " + num1 + " y " + num2 + " es = " + result + "</h2><BR>");
                 out.println("</body>");
             out.println("</html>");
             out.close();

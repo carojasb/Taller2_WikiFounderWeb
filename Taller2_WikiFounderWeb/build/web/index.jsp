@@ -20,6 +20,6 @@
             <p class="BtnIniciar" align="center">
                 <input type="submit" value="Iniciar" name="btn_iniciar" align="center"/>
             </p>
-        </form>        
+        </form>
     </body>
 </html>
