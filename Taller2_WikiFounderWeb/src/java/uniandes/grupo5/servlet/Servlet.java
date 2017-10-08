@@ -29,10 +29,9 @@ public class Servlet extends HttpServlet {
     String hecho;
     String lugar;
     String perso;
+    String fecha_inicial;
+    String fecha_final;
     
-    int num1;
-    int num2;
- 
     private static final String USERNAME = "bigdata05";
     private static final String HOST = "bigdata-cluster1-01.virtual.uniandes.edu.co";
     private static final int PORT = 22;
@@ -44,6 +43,7 @@ public class Servlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
            
         hecho = request.getParameter("historia");
+        hecho = request.getParameter("lugar");
         
         try{
             SSHConector sshConector = new SSHConector();             
@@ -51,8 +51,30 @@ public class Servlet extends HttpServlet {
             sshConector.connect(USERNAME, PASSWORD, HOST, PORT);
             
             
-            num1 = Integer.parseInt(request.getParameter("historia"));
-            num2 = Integer.parseInt(request.getParameter("lugar"));
+            hecho = request.getParameter("historia");
+            if (hecho.trim().length() == 0){
+                hecho = "No_registrado";
+            };
+            
+            lugar = request.getParameter("lugar");
+            if (lugar.trim().length() == 0){
+                lugar = "No_registrado";
+            };
+            
+            perso = request.getParameter("personaje");
+            if (perso.trim().length() == 0){
+                perso = "No_registrado";
+            };
+            
+            fecha_inicial = request.getParameter("datepickerinicial");
+            if (fecha_inicial.trim().length() == 0){
+                fecha_inicial = "No_registrado";
+            };
+            
+            fecha_final = request.getParameter("datepickerfinal");
+            if (fecha_final.trim().length() == 0){
+                fecha_final = "No_registrado";
+            };
             
             //String result = sshConector.executeCommand("hadoop jar prueba_taller2.jar " + num1 + " " + num2);
             sshConector.executeCommand("hadoop fs -rm -r -f salida_taller2");
@@ -67,7 +89,12 @@ public class Servlet extends HttpServlet {
                 out.println("</head>");
                 out.println("<body style=\"background-color: black\"> <BR><BR><BR>");
                     out.println("<h1>PARAMETROS DE LA BÚSQUEDA</h1><BR><BR>");
-                    out.println("<h2>La suma entre " + num1 + " y " + num2 + " es = " + result + "</h2><BR>");
+                    out.println("<h2>Hecho historico = " + hecho  + "</h2>");
+                    out.println("<h2>Lugar = " + lugar  + "</h2>");
+                    out.println("<h2>Personaje = " + perso  + "</h2>");
+                    out.println("<h2>Fecha inicial = " + fecha_inicial  + "</h2>");
+                    out.println("<h2>Fecha final = " + fecha_final  + "</h2>");
+                    out.println("<h2>El resultado del jar es... " + result + "</h2><BR>");
                 out.println("</body>");
             out.println("</html>");
             out.close();
@@ -95,49 +122,5 @@ public class Servlet extends HttpServlet {
             nu.printStackTrace();
             System.out.println(nu.getMessage());
         }
-    
-
-            // TODO Auto-generated method stub
-           /* hecho = request.getParameter("historia");
-            lugar = request.getParameter("lugar");
-            perso = request.getParameter("personaje");
-            
-            PrintWriter out = response.getWriter();
-            
-            out.println("<html>");
-                out.println("<head>");
-                    out.println("<title>Respuesta Servlet</title>");
-                    out.println("<link href=\"Resources/css/screen.css\" rel=\"stylesheet\" type=\"text/css\"/>");
-                out.println("</head>");
-                out.println("<body style=\"background-color: black\"> <BR><BR><BR>");                    
-                    out.println("<h1>PARAMETROS DE LA BÚSQUEDA</h1><BR><BR>");
-                    out.println("<h2>Hecho histórico a buscar = " + hecho + "</h2><BR>");
-                    out.println("<h2>Lugar a buscar = " + lugar + "</h2><BR>");
-                    out.println("<h2>Personaje a buscar = " + perso + "</h2><BR>");
-                out.println("</body>");
-            out.println("</html>");*/
-           /* 
-            num1 = Integer.parseInt(request.getParameter("historia"));
-            num2 = Integer.parseInt(request.getParameter("lugar"));
-            
-            Process proc = Runtime.getRuntime().exec("java -jar C:/Users/Asus/Documents/Prueba_taller2.jar " + num1 + " " + num2);
-            InputStream resultado = proc.getInputStream();
-            BufferedReader br = new BufferedReader (new InputStreamReader (resultado));
-            
-            //System.out.println(br.readLine()); 
-             
-            PrintWriter out = response.getWriter();
-            
-            out.println("<html>");
-                out.println("<head>");
-                    out.println("<title>Respuesta Servlet</title>");
-                    out.println("<link href=\"Resources/css/screen.css\" rel=\"stylesheet\" type=\"text/css\"/>");
-                out.println("</head>");
-                out.println("<body style=\"background-color: black\"> <BR><BR><BR>");                    
-                    out.println("<h1>PARAMETROS DE LA BÚSQUEDA</h1><BR><BR>");
-                    out.println("<h2>La suma entre " + num1 + " y " + num2 + " es = " + br.readLine() + "</h2><BR>");                                      
-                out.println("</body>");
-            out.println("</html>");
-            out.close();*/
     }    
 }
