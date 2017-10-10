@@ -40,13 +40,13 @@
                 
                 <p align="center">
                 <label style="color: black">Hecho histórico =</label>
-                <input type="text" name="historia" placeholder="Ej: Segunda Guerra Mundial" size="32"/><BR><BR>
+                <input type="text" name="historia" placeholder="Ejemplo: Segunda Guerra Mundial" size="33"/><BR><BR>
                 
                 <label style="color: black">Lugar =</label>
-                <input type="text" name="lugar" placeholder="Ej: Stalingrado" size="41"/><BR><BR>
+                <input type="text" name="lugar" placeholder="Ejemplo: Stalingrado" size="41"/><BR><BR>
 
                 <label style="color: black">Personaje =</label>
-                <input type="text" name="personaje" placeholder="Ej: Friedrich Paulus" size="37"/><BR><BR>
+                <input type="text" name="personaje" placeholder="Ejemplo: Friedrich Paulus" size="38"/><BR><BR>
 
 
                 <label style="color: black"> Fecha Inicial = </label>

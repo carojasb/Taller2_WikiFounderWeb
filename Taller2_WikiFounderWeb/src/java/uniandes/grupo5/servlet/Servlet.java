@@ -57,7 +57,7 @@ public class Servlet extends HttpServlet {
             if (lugar.trim().length() == 0){
                 lugar = "No_registrado";
             };
-            
+             
             perso = request.getParameter("personaje");
             if (perso.trim().length() == 0){
                 perso = "No_registrado";
