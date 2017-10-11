@@ -50,33 +50,36 @@ public class Servlet extends HttpServlet {
             
             hecho = request.getParameter("historia");
             if (hecho.trim().length() == 0){
-                hecho = "No_registrado";
+                hecho = "No registrado";
             };
             
             lugar = request.getParameter("lugar");
             if (lugar.trim().length() == 0){
-                lugar = "No_registrado";
+                lugar = "No registrado";
             };
              
             perso = request.getParameter("personaje");
             if (perso.trim().length() == 0){
-                perso = "No_registrado";
+                perso = "No registrado";
             };
             
             fecha_inicial = request.getParameter("datepickerinicial");
             if (fecha_inicial.trim().length() == 0){
-                fecha_inicial = "No_registrado";
+                fecha_inicial = "No registrado";
             };
             
             fecha_final = request.getParameter("datepickerfinal");
             if (fecha_final.trim().length() == 0){
-                fecha_final = "No_registrado";
+                fecha_final = "No registrado";
             };
             
             //String result = sshConector.executeCommand("hadoop jar prueba_taller2.jar " + num1 + " " + num2);
-            sshConector.executeCommand("hadoop fs -rm -r -f salida_taller2");
-            String result = sshConector.executeCommand("hadoop jar Wiki.jar uniandes.reuters.job.XML_Job datos_wiki_test salida_taller2");
-                        
+            sshConector.executeCommand("hadoop fs -rm -r -f  salida_taller2");
+            String result = 
+                    sshConector.executeCommand("hadoop jar Wiki.jar uniandes.reuters.job.XML_Job datos_wiki_test salida_taller2 " + hecho.replace(" ", "_") + " " + lugar.replace(" ", "_") + " " + perso.replace(" ", "_") + " " + fecha_inicial.replace(" ", "_") + " " + fecha_final.replace(" ", "_"));                        
+            
+            System.out.println("hadoop jar Wiki.jar uniandes.reuters.job.XML_Job datos_wiki_test salida_taller2 " + hecho.replace(" ", "_") + " " + lugar.replace(" ", "_") + " " + perso.replace(" ", "_") + " " + fecha_inicial.replace(" ", "_") + " " + fecha_final.replace(" ", "_"));
+            
             PrintWriter out = response.getWriter();
             
             out.println("<html>");
