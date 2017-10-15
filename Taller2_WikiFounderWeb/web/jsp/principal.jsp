@@ -66,7 +66,6 @@
             <p class="linkVolver" align="center">                
             <a href="../index.jsp" style="font-size: 15pt; font-family: Comic Sans MS; color: white; align-items: center">Inicio</a>
             
-            
             <%
             String hist;
             hist = request.getParameter("historia");

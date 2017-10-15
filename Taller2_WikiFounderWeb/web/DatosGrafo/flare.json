@@ -1,0 +1,45 @@
+{
+  "nodes": [
+       {"id": "Ricky Minard","group": 1},
+{"id": "birth_place  = [[Mansfield, Ohio]]","group": 2},
+{"id": "Ricky Minard","group": 1},
+{"id": "high_school  = [[Mansfield Senior High School","group": 2},
+{"id": "Requiem (typeface)","group": 1},
+{"id": "creator = [[Jonathan Hoefler]]","group": 2},
+{"id": "The Nice Boys","group": 1},
+{"id": "current_members     = Terry Six<br />Brian Lelko<br />Alan Mansfield<br />Colin Jarrel<br />Gabe Lageson","group": 2},
+{"id": "Jon Holland","group": 1},
+{"id": "fullname = Jonathan Mark Holland","group": 2},
+{"id": "Texas State Highway 186","group": 1},
+{"id": "terminus_b=[[Port Mansfield, TX","group": 2},
+{"id": "Northern Burlington County Regional High School","group": 1},
+{"id": "location    = 160 Mansfield Road East<br>[[Columbus, New Jersey","group": 2},
+{"id": "Al-Shabab Club (Manama)","group": 1},
+{"id": "manager  =  O.Jonathan","group": 2},
+{"id": "Moonachie School District","group": 1},
+{"id": "superintendent = Dr. Jonathan Ponds","group": 2},
+{"id": "Iyseden Christie","group": 1},
+{"id": "clubs3 = → [[Mansfield Town F.C.","group": 2},
+{"id": "Iyseden Christie","group": 1},
+{"id": "clubs4 = [[Mansfield Town F.C.","group": 2},
+{"id": "Iyseden Christie","group": 1},
+{"id": "clubs6 = [[Mansfield Town F.C.","group": 2}
+
+  ],
+  
+  "links": [
+        
+{"source": "Ricky Minard","target": "birth_place  = [[Mansfield, Ohio]]","value": 1},
+{"source": "Ricky Minard","target": "high_school  = [[Mansfield Senior High School","value": 1},
+{"source": "Requiem (typeface)","target": "creator = [[Jonathan Hoefler]]","value": 1},
+{"source": "The Nice Boys","target": "current_members     = Terry Six<br />Brian Lelko<br />Alan Mansfield<br />Colin Jarrel<br />Gabe Lageson","value": 1},
+{"source": "Jon Holland","target": "fullname = Jonathan Mark Holland","value": 1},
+{"source": "Texas State Highway 186","target": "terminus_b=[[Port Mansfield, TX","value": 1},
+{"source": "Northern Burlington County Regional High School","target": "location    = 160 Mansfield Road East<br>[[Columbus, New Jersey","value": 1},
+{"source": "Al-Shabab Club (Manama)","target": "manager  =  O.Jonathan","value": 1},
+{"source": "Moonachie School District","target": "superintendent = Dr. Jonathan Ponds","value": 1},
+{"source": "Iyseden Christie","target": "clubs3 = → [[Mansfield Town F.C.","value": 1},
+{"source": "Iyseden Christie","target": "clubs4 = [[Mansfield Town F.C.","value": 1},
+{"source": "Iyseden Christie","target": "clubs6 = [[Mansfield Town F.C.","value": 1}
+  ]
+}

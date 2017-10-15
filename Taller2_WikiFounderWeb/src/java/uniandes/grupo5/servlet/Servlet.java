@@ -76,7 +76,7 @@ public class Servlet extends HttpServlet {
             //String result = sshConector.executeCommand("hadoop jar prueba_taller2.jar " + num1 + " " + num2);
             sshConector.executeCommand("hadoop fs -rm -r -f  salida_taller2");
             String result = 
-                    sshConector.executeCommand("hadoop jar Wiki.jar uniandes.reuters.job.XML_Job datos_wiki_test salida_taller2 " + hecho.replace(" ", "_") + " " + lugar.replace(" ", "_") + " " + perso.replace(" ", "_") + " " + fecha_inicial.replace(" ", "_") + " " + fecha_final.replace(" ", "_"));                        
+                    sshConector.executeCommand("hadoop jar Wikibz.jar uniandes.reuters.job.XML_Job datos_wiki_test_comp salida_taller2 " + hecho.replace(" ", "_") + " " + lugar.replace(" ", "_") + " " + perso.replace(" ", "_") + " " + fecha_inicial.replace(" ", "_") + " " + fecha_final.replace(" ", "_"));                        
             
             System.out.println("hadoop jar Wiki.jar uniandes.reuters.job.XML_Job datos_wiki_test salida_taller2 " + hecho.replace(" ", "_") + " " + lugar.replace(" ", "_") + " " + perso.replace(" ", "_") + " " + fecha_inicial.replace(" ", "_") + " " + fecha_final.replace(" ", "_"));
             
@@ -85,31 +85,19 @@ public class Servlet extends HttpServlet {
             out.println("<html>");
                 out.println("<head>");
                     out.println("<title>Respuesta Servlet</title>");
-                    out.println("<link href=\"Resources/css/screen.css\" rel=\"stylesheet\" type=\"text/css\"/>");
+                    out.println("<link href=\"Resources/css/screen.css\" rel=\"stylesheet\" type=\"text/css\"/>");                                    
+                    out.println("<style>\n" +
+                                ".links line {\n" +
+                                "stroke: #999;\n" +
+                                "stroke-opacity: 0.5;\n" +
+                                "}\n\n" +
+
+                              ".nodes circle {\n" +
+                                "stroke: #fff;\n" +
+                                "stroke-width: 1.5px;\n" +
+                              "}\n" +
+                                "</style>");
                 out.println("</head>");
-                out.println("<style>\n" +
-                            "\n" +
-                            ".node {\n" +
-                            "  cursor: pointer;\n" +
-                            "}\n" +
-                            "\n" +
-                            ".node circle {\n" +
-                            "  fill: #fff;\n" +
-                            "  stroke: steelblue;\n" +
-                            "  stroke-width: 1.5px;\n" +
-                            "}\n" +
-                            "\n" +
-                            ".node text {\n" +
-                            "  font: 10px sans-serif;\n" +
-                            "}\n" +
-                            "\n" +
-                            ".link {\n" +
-                            "  fill: none;\n" +
-                            "  stroke: #ccc;\n" +
-                            "  stroke-width: 1.5px;\n" +
-                            "}\n" +
-                            "\n" +
-                            "</style>");
                 out.println("<body style=\"background-color: darkslategray\"> <BR><BR><BR>");                    
                     out.println("<h1 style=\"color: black\" align=\"center\">PARAMETROS DE LA BÚSQUEDA</h1><BR><BR>");
                     out.println("<h2 style=\"color: black\" align=\"center\"> <b>Hecho historico = </b>" + hecho.replace("_", " ")  + "</h2>");
@@ -117,157 +105,96 @@ public class Servlet extends HttpServlet {
                     out.println("<h2 style=\"color: black\" align=\"center\"> <b>Personaje = </b>" + perso.replace("_", " ")  + "</h2>");
                     out.println("<h2 style=\"color: black\" align=\"center\"> <b>Fecha inicial = </b>" + fecha_inicial.replace("_", " ")  + "</h2>");
                     out.println("<h2 style=\"color: black\" align=\"center\"> <b>Fecha final = </b>" + fecha_final.replace("_", " ")  + "</h2><BR><BR>");                    
-                    out.println("<h2 style=\"color: black\">El resultado del jar es..." + result + "</h2>");
-                    out.println("<script src=\"//d3js.org/d3.v3.min.js\"></script>\n" +
-                "<script>\n" +
-                "\n" +
-                "var margin = {top: 20, right: 120, bottom: 20, left: 120},\n" +
-                "    width = 960 - margin.right - margin.left,\n" +
-                "    height = 800 - margin.top - margin.bottom;\n" +
-                "\n" +
-                "var i = 0,\n" +
-                "    duration = 750,\n" +
-                "    root;\n" +
-                "\n" +
-                "var tree = d3.layout.tree()\n" +
-                "    .size([height, width]);\n" +
-                "\n" +
-                "var diagonal = d3.svg.diagonal()\n" +
-                "    .projection(function(d) { return [d.y, d.x]; });\n" +
-                "\n" +
-                "var svg = d3.select(\"body\").append(\"svg\")\n" +
-                "    .attr(\"width\", width + margin.right + margin.left)\n" +
-                "    .attr(\"height\", height + margin.top + margin.bottom)\n" +
-                "  .append(\"g\")\n" +
-                "    .attr(\"transform\", \"translate(\" + margin.left + \",\" + margin.top + \")\");\n" +
-                "\n" +
-                "d3.json(\"Datos_Grafo/flare.json\", function(error, flare) {\n" +
-                "  if (error) throw error;\n" +
-                "\n" +
-                "  root = flare;\n" +
-                "  root.x0 = height / 2;\n" +
-                "  root.y0 = 0;\n" +
-                "\n" +
-                "  function collapse(d) {\n" +
-                "    if (d.children) {\n" +
-                "      d._children = d.children;\n" +
-                "      d._children.forEach(collapse);\n" +
-                "      d.children = null;\n" +
-                "    }\n" +
-                "  }\n" +
-                "\n" +
-                "  root.children.forEach(collapse);\n" +
-                "  update(root);\n" +
-                "});\n" +
-                "\n" +
-                "d3.select(self.frameElement).style(\"height\", \"800px\");\n" +
-                "\n" +
-                "function update(source) {\n" +
-                "\n" +
-                "  // Compute the new tree layout.\n" +
-                "  var nodes = tree.nodes(root).reverse(),\n" +
-                "      links = tree.links(nodes);\n" +
-                "\n" +
-                "  // Normalize for fixed-depth.\n" +
-                "  nodes.forEach(function(d) { d.y = d.depth * 180; });\n" +
-                "\n" +
-                "  // Update the nodes…\n" +
-                "  var node = svg.selectAll(\"g.node\")\n" +
-                "      .data(nodes, function(d) { return d.id || (d.id = ++i); });\n" +
-                "\n" +
-                "  // Enter any new nodes at the parent's previous position.\n" +
-                "  var nodeEnter = node.enter().append(\"g\")\n" +
-                "      .attr(\"class\", \"node\")\n" +
-                "      .attr(\"transform\", function(d) { return \"translate(\" + source.y0 + \",\" + source.x0 + \")\"; })\n" +
-                "      .on(\"click\", click);\n" +
-                "\n" +
-                "  nodeEnter.append(\"circle\")\n" +
-                "      .attr(\"r\", 1e-6)\n" +
-                "      .style(\"fill\", function(d) { return d._children ? \"lightsteelblue\" : \"#fff\"; });\n" +
-                "\n" +
-                "  nodeEnter.append(\"text\")\n" +
-                "      .attr(\"x\", function(d) { return d.children || d._children ? -10 : 10; })\n" +
-                "      .attr(\"dy\", \".35em\")\n" +
-                "      .attr(\"text-anchor\", function(d) { return d.children || d._children ? \"end\" : \"start\"; })\n" +
-                "      .text(function(d) { return d.name; })\n" +
-                "      .style(\"fill-opacity\", 1e-6);\n" +
-                "\n" +
-                "  // Transition nodes to their new position.\n" +
-                "  var nodeUpdate = node.transition()\n" +
-                "      .duration(duration)\n" +
-                "      .attr(\"transform\", function(d) { return \"translate(\" + d.y + \",\" + d.x + \")\"; });\n" +
-                "\n" +
-                "  nodeUpdate.select(\"circle\")\n" +
-                "      .attr(\"r\", 4.5)\n" +
-                "      .style(\"fill\", function(d) { return d._children ? \"lightsteelblue\" : \"#fff\"; });\n" +
-                "\n" +
-                "  nodeUpdate.select(\"text\")\n" +
-                "      .style(\"fill-opacity\", 1);\n" +
-                "\n" +
-                "  // Transition exiting nodes to the parent's new position.\n" +
-                "  var nodeExit = node.exit().transition()\n" +
-                "      .duration(duration)\n" +
-                "      .attr(\"transform\", function(d) { return \"translate(\" + source.y + \",\" + source.x + \")\"; })\n" +
-                "      .remove();\n" +
-                "\n" +
-                "  nodeExit.select(\"circle\")\n" +
-                "      .attr(\"r\", 1e-6);\n" +
-                "\n" +
-                "  nodeExit.select(\"text\")\n" +
-                "      .style(\"fill-opacity\", 1e-6);\n" +
-                "\n" +
-                "  // Update the links…\n" +
-                "  var link = svg.selectAll(\"path.link\")\n" +
-                "      .data(links, function(d) { return d.target.id; });\n" +
-                "\n" +
-                "  // Enter any new links at the parent's previous position.\n" +
-                "  link.enter().insert(\"path\", \"g\")\n" +
-                "      .attr(\"class\", \"link\")\n" +
-                "      .attr(\"d\", function(d) {\n" +
-                "        var o = {x: source.x0, y: source.y0};\n" +
-                "        return diagonal({source: o, target: o});\n" +
-                "      });\n" +
-                "\n" +
-                "  // Transition links to their new position.\n" +
-                "  link.transition()\n" +
-                "      .duration(duration)\n" +
-                "      .attr(\"d\", diagonal);\n" +
-                "\n" +
-                "  // Transition exiting nodes to the parent's new position.\n" +
-                "  link.exit().transition()\n" +
-                "      .duration(duration)\n" +
-                "      .attr(\"d\", function(d) {\n" +
-                "        var o = {x: source.x, y: source.y};\n" +
-                "        return diagonal({source: o, target: o});\n" +
-                "      })\n" +
-                "      .remove();\n" +
-                "\n" +
-                "  // Stash the old positions for transition.\n" +
-                "  nodes.forEach(function(d) {\n" +
-                "    d.x0 = d.x;\n" +
-                "    d.y0 = d.y;\n" +
-                "  });\n" +
-                "}\n" +
-                "\n" +
-                "// Toggle children on click.\n" +
-                "function click(d) {\n" +
-                "  if (d.children) {\n" +
-                "    d._children = d.children;\n" +
-                "    d.children = null;\n" +
-                "  } else {\n" +
-                "    d.children = d._children;\n" +
-                "    d._children = null;\n" +
-                "  }\n" +
-                "  update(d);\n" +
-                "}\n" +
-                "\n" +
-                "</script>");
+                    //out.println("<h2 style=\"color: black\">El resultado del jar es..." + result + "</h2>");
+                    out.println("<svg width=\"1400\" height=\"600\"></svg>");
+                    out.println("<script src=\"https://d3js.org/d3.v4.min.js\"></script>\n" +
+                                "<script>\n" +
+                                "\n" +
+                                "var svg = d3.select(\"svg\"),\n" +
+                                "    width = +svg.attr(\"width\"),\n" +
+                                "    height = +svg.attr(\"height\");\n" +
+                                "\n" +
+                                "var color = d3.scaleOrdinal(d3.schemeCategory20);\n" +
+                                "\n" +
+                                "var simulation = d3.forceSimulation()\n" +
+                                "    .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n" +
+                                "    .force(\"charge\", d3.forceManyBody())\n" +
+                                "    .force(\"center\", d3.forceCenter(width / 2, height / 2));\n" +
+                                "\n" +
+                                "d3.json(\"DatosGrafo/flare.json\", function(error, graph) {\n" +
+                                "  if (error) throw error;\n" +
+                                "\n" +
+                                "  var link = svg.append(\"g\")\n" +
+                                "      .attr(\"class\", \"links\")\n" +
+                                "    .selectAll(\"line\")\n" +
+                                "    .data(graph.links)\n" +
+                                "    .enter().append(\"line\")\n" +
+                                "      .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n" +
+                                "\n" +
+                                "  var node = svg.append(\"g\")\n" +
+                                "      .attr(\"class\", \"nodes\")\n" +
+                                "    .selectAll(\"circle\")\n" +
+                                "    .data(graph.nodes)\n" +
+                                "    .enter().append(\"circle\")\n" +
+                                "      .attr(\"r\", 6)\n" +
+                                "      .attr(\"fill\", function (d, i) { \n" +
+                                "			if (d.group==2){\n" +
+                                "				return \"red\" ;\n" +
+                                "		    }else{ return color(d.group);}\n" +
+                                "			}) \n" +
+                                "      .call(d3.drag()\n" +
+                                "          .on(\"start\", dragstarted)\n" +
+                                "          .on(\"drag\", dragged)\n" +
+                                "          .on(\"end\", dragended));\n" +
+                                "\n" +
+                                "  node.append(\"title\")\n" +
+                                "      .text(function(d) { return d.id; });\n" +
+                                "\n" +
+                                "  simulation\n" +
+                                "      .nodes(graph.nodes)\n" +
+                                "      .on(\"tick\", ticked);\n" +
+                                "\n" +
+                                "  simulation.force(\"link\")\n" +
+                                "      .links(graph.links);\n" +
+                                "\n" +
+                                "  function ticked() {\n" +
+                                "    link\n" +
+                                "        .attr(\"x1\", function(d) { return d.source.x; })\n" +
+                                "        .attr(\"y1\", function(d) { return d.source.y; })\n" +
+                                "\n" +
+                                "        .attr(\"x2\", function(d) { return d.target.x; })\n" +
+                                "        .attr(\"y2\", function(d) { return d.target.y; });\n" +
+                                "\n" +
+                                "    node\n" +
+                                "        .attr(\"cx\", function(d) { return d.x; })\n" +
+                                "        .attr(\"cy\", function(d) { return d.y; });\n" +
+                                "  }\n" +
+                                "});\n" +
+                                "\n" +
+                                "function dragstarted(d) {\n" +
+                                "  if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n" +
+                                "  d.fx = d.x;\n" +
+                                "  d.fy = d.y;\n" +
+                                "}\n" +
+                                "\n" +
+                                "function dragged(d) {\n" +
+                                "  d.fx = d3.event.x;\n" +
+                                "  d.fy = d3.event.y;\n" +
+                                "}\n" +
+                                "\n" +
+                                "function dragended(d) {\n" +
+                                "  if (!d3.event.active) simulation.alphaTarget(0);\n" +
+                                "  d.fx = null;\n" +
+                                "  d.fy = null;\n" +
+                                "}\n" +
+                                "\n" +
+                                "</script>");
                 out.println("<p class=\"linkVolver\" align=\"center\">\n" +
                 "<a href=\"index.jsp\" style=\"font-size: 15pt; font-family: Comic Sans MS; color: white; align-items: center\">Inicio</a>\n" +
                 "<br><br>\n" +
                 "<a href=\"jsp/principal.jsp\" style=\"font-size: 15pt; font-family: Comic Sans MS; color: white; align-items: center\">Volver</a>\n" +
                 "</p>");
-                out.println("</body>");
+                out.println("</body>");                
             out.println("</html>");
             out.close();
             
