@@ -36,7 +36,7 @@
             <h1 style="color: black" align="center">Realizar búsqueda en Wikipedia</h1><BR><BR><BR>
             <a align="center">
             
-                <h2 style="color: black">Que desea buscar?</h2><BR><BR>
+                <h2 align="center" style="color: black">Que desea buscar?</h2><BR><BR>
                 
                 <p align="center">
                 <label style="color: black">Hecho histórico =</label>
@@ -57,14 +57,14 @@
                 <input type="text" name="datepickerfinal" id="datepickerfinal" readonly="readonly" size="12" /><BR><BR><BR>
                 </p>
 
-                <p class="BtnIniciar">
+                <p class="BtnIniciar" align="center">
                     <input type="submit" value="Buscar" name="btn_buscar"/>
                 </p>
             
             </a>
             <BR><BR>
             <p class="linkVolver" align="center">                
-            <a href="../index.jsp" style="font-size: 15pt; font-family: Comic Sans MS; color: white; align-items: center">Inicio</a>
+            <a href="../index.jsp" style="font-size: 15pt; font-family: Comic Sans MS; color: white; align-items: center" align="center">Inicio</a>
             
             <%
             String hist;

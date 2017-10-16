@@ -72,19 +72,51 @@ public class Servlet extends HttpServlet {
             if (fecha_final.trim().length() == 0){
                 fecha_final = "No registrado";
             };
+                        
+            String validar = sshConector.executeCommand("if [ -d relaciones_taller2 ]; then echo \"SI\"; else echo \"NO\"; fi");
+            String part = null;
+            String texto_json = "";
+            String renglon = "";
             
-            //String result = sshConector.executeCommand("hadoop jar prueba_taller2.jar " + num1 + " " + num2);
-            sshConector.executeCommand("hadoop fs -rm -r -f  salida_taller2");
-            String result = 
-                    sshConector.executeCommand("hadoop jar Wikibz.jar uniandes.reuters.job.XML_Job datos_wiki_test_comp salida_taller2 " + hecho.replace(" ", "_") + " " + lugar.replace(" ", "_") + " " + perso.replace(" ", "_") + " " + fecha_inicial.replace(" ", "_") + " " + fecha_final.replace(" ", "_"));                        
+            if (validar.contains("NO")){
+                
+                String result = 
+                  sshConector.executeCommand("hadoop jar Wikibz.jar uniandes.reuters.job.TraerTodasReferencias datos_wiki_test relaciones_taller2");
+                sshConector.executeCommand("hadoop fs -get relaciones_taller2");
+                                
+            }else if (validar.contains("SI")){                        
+                
+                //Ejecutar la clase que busca en el archivo de relaciones
+                sshConector.executeCommand("hadoop fs -rm -r -f  salida_taller2");
+                sshConector.executeCommand("rm -r -f salida_taller2");
+                String result = 
+                        sshConector.executeCommand("hadoop jar Wikibz.jar uniandes.reuters.job.Archivo_Salida_Job relaciones_taller2 salida_taller2 " + hecho.replace(" ", "_") + " " + lugar.replace(" ", "_") + " " + perso.replace(" ", "_") + " " + fecha_inicial.replace(" ", "_") + " " + fecha_final.replace(" ", "_"));
+                sshConector.executeCommand("hadoop fs -get salida_taller2");
+                
+                part = sshConector.executeCommand("cat salida_taller2/part-r-00000");
+                
+                
+                for (int n=0; n<part.length(); n++) {
+                    char c = part.charAt(n);
+                    if (renglon == ""){
+                        texto_json = texto_json + c;
+                    }
+                    System.out.println (c);
+                };
+                
+            };
             
-            System.out.println("hadoop jar Wiki.jar uniandes.reuters.job.XML_Job datos_wiki_test salida_taller2 " + hecho.replace(" ", "_") + " " + lugar.replace(" ", "_") + " " + perso.replace(" ", "_") + " " + fecha_inicial.replace(" ", "_") + " " + fecha_final.replace(" ", "_"));
+            
+
+
             
             PrintWriter out = response.getWriter();
             
             out.println("<html>");
                 out.println("<head>");
                     out.println("<title>Respuesta Servlet</title>");
+                    out.println(validar+"\n");
+                    out.println(part);
                     out.println("<link href=\"Resources/css/screen.css\" rel=\"stylesheet\" type=\"text/css\"/>");                                    
                     out.println("<style>\n" +
                                 ".links line {\n" +
@@ -106,7 +138,7 @@ public class Servlet extends HttpServlet {
                     out.println("<h2 style=\"color: black\" align=\"center\"> <b>Fecha inicial = </b>" + fecha_inicial.replace("_", " ")  + "</h2>");
                     out.println("<h2 style=\"color: black\" align=\"center\"> <b>Fecha final = </b>" + fecha_final.replace("_", " ")  + "</h2><BR><BR>");                    
                     //out.println("<h2 style=\"color: black\">El resultado del jar es..." + result + "</h2>");
-                    out.println("<svg width=\"1400\" height=\"600\"></svg>");
+                    out.println("<svg width=\"1400\" height=\"600\"></svg>");                    
                     out.println("<script src=\"https://d3js.org/d3.v4.min.js\"></script>\n" +
                                 "<script>\n" +
                                 "\n" +
