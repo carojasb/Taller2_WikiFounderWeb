@@ -135,7 +135,7 @@ public class Servlet extends HttpServlet {
                     out.println("<h2 style=\"color: black\" align=\"center\"> <b>Fecha inicial = </b>" + fecha_inicial.replace("_", " ")  + "</h2>");
                     out.println("<h2 style=\"color: black\" align=\"center\"> <b>Fecha final = </b>" + fecha_final.replace("_", " ")  + "</h2><BR><BR>");                    
                     //out.println("<h2 style=\"color: black\">El resultado del jar es..." + result + "</h2>");
-                    out.println("<svg width=\"1060\" height=\"800\"></svg><br>");       
+                    out.println("<svg width=\"1000\" height=\"500\"></svg><br>");       
                     out.println(part);                    
                     out.println("<script src=\"https://d3js.org/d3.v4.min.js\"></script>\n" +
                                                         
