@@ -99,7 +99,7 @@ public class Servlet extends HttpServlet {
                         .replaceAll("<br>", " ").replaceAll("<br />", " ")
                         .replaceFirst("[||||{]", "{ \"nodes\": [{").replaceAll("[||||]", "\n").replace("1"+"{", "{").replaceAll("\\n", "_")
                         .replaceFirst(Pattern.quote(","+"____"+"{"+"\"source"), "], \"links\": [ {\"source").replaceAll("____", " ");
-                if (part.length()<4){
+                if (part.length()<4 || part == null){
                     part = "NO REGISTRA";
                 }else{
                     part = part.substring(0,part.length() - 3) + " ] }";                
